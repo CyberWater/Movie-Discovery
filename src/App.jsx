@@ -6,48 +6,19 @@ import FeaturedMovies from "./components/Movies/FeaturedMovies";
 import Footer from "./components/Movies/Footer";
 // import getTrendingVideos from "./utils/tmdbApi";
 import axios from "axios";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import MovieDetails from "./components/Movies/MovieDetails";
 
 function App() {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    const fetchAllMovies = async () => {
-      const config = {
-        headers: {
-          accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZWFiMjNjMzRlMGVhNmI2NjUyMDE5ZmQyZmNjMGJhNiIsInN1YiI6IjYxMzY2MTNjNmUwZDcyMDA2MjRjMzM4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yexq3TVyd1xgDFZzrMlFmy3dLTpiAi3UqhzoNF3siYo",
-        },
-      };
-
-      // You can customize the query parameters to match your requirements.
-      const queryParams = {
-        sort_by: "popularity.desc", // Sort by popularity, you can change this
-        page: 1, // The page number, you can paginate through the results
-      };
-
-      const res = await axios.get(
-        "https://api.themoviedb.org/3/discover/movie",
-        {
-          ...config,
-          params: queryParams,
-        }
-      );
-
-      // The response will contain a list of movies based on your query.
-      console.log(res.data.results);
-      setMovies(res.data.results);
-    };
-
-    fetchAllMovies();
-  }, []);
-
-  console.log(movies);
   return (
     <div className="">
-      <Header />
-      <FeaturedMovies movies={movies} />
-      <Footer />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movie/:id" element={<MovieDetails />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

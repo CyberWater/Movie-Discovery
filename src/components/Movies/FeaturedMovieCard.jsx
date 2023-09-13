@@ -1,45 +1,49 @@
 import React, { useEffect, useState } from "react";
 import SpaceContainer from "../utils/SpaceContainer";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const FeaturedMovieCard = ({ movie }) => {
   const [genres, setGenres] = useState([]);
 
-  useEffect(() => {
-    const fetchGenres = async () => {
-      try {
-        const config = {
-          headers: {
-            accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZWFiMjNjMzRlMGVhNmI2NjUyMDE5ZmQyZmNjMGJhNiIsInN1YiI6IjYxMzY2MTNjNmUwZDcyMDA2MjRjMzM4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yexq3TVyd1xgDFZzrMlFmy3dLTpiAi3UqhzoNF3siYo",
-          },
-        };
-        const response = await axios.get(
-          "https://api.themoviedb.org/3/genre/movie/list",
-          {
-            config,
-          }
-        );
-        const genreMap = {};
-        response.data.genres.forEach((genre) => {
-          genreMap[genre.id] = genre.name;
-        });
-        setGenres(genreMap);
-      } catch (error) {
-        console.error("Error fetching genres: ", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchGenres = async () => {
+  //     try {
+  //       const config = {
+  //         headers: {
+  //           accept: "application/json",
+  //           Authorization:
+  //             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZWFiMjNjMzRlMGVhNmI2NjUyMDE5ZmQyZmNjMGJhNiIsInN1YiI6IjYxMzY2MTNjNmUwZDcyMDA2MjRjMzM4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yexq3TVyd1xgDFZzrMlFmy3dLTpiAi3UqhzoNF3siYo",
+  //         },
+  //       };
+  //       const response = await axios.get(
+  //         "https://api.themoviedb.org/3/genre/movie/list",
+  //         {
+  //           config,
+  //         }
+  //       );
+  //       const genreMap = {};
+  //       response.data.genres.forEach((genre) => {
+  //         genreMap[genre.id] = genre.name;
+  //       });
+  //       setGenres(genreMap);
+  //     } catch (error) {
+  //       console.error("Error fetching genres: ", error);
+  //     }
+  //   };
 
-    fetchGenres();
-  }, []);
-  return (
+  //   fetchGenres();
+  // }, []);
+  return ( 
     <div className=" p-4 rounded-md w-[250px] h-[490px]">
       <div className="relative">
-        <img
+      <Link to={`movie/${movie.id}`}>
+      <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           className="w-[250px] h-[370px] object-cover"
         />
+      </Link>
+       
         <span className="absolute rounded-full p-1 bg-gray-100/40 top-5 left-44">
           <img src="/images/heart.png" className="w-6 h-6 " />
         </span>
@@ -67,12 +71,12 @@ const FeaturedMovieCard = ({ movie }) => {
             <span>{movie.vote_average * 10}%</span>
           </div>
         </div>
-        <p className="text-gray-400 font-semibold">
+        {/* <p className="text-gray-400 font-semibold">
           {movie.genre_ids
             .map((genreId) => genres[genreId])
             .filter(Boolean)
             .join(", ")}
-        </p>
+        </p> */}
       </div>
     </div>
   );
