@@ -11,29 +11,42 @@ function App() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetchAllMovies = async () => {
       const config = {
         headers: {
           accept: "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYjRhNDY1MjgyZjY0YWE0M2FhZTViOWJkYmM4YjRhZiIsInN1YiI6IjY0ZTUxNzkxZTBjYTdmMDBjNjY1OTYzNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.YJXb42a-MPqirvlTKwSGP2NkOT1OlbsfbKYviP4jsbk",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZWFiMjNjMzRlMGVhNmI2NjUyMDE5ZmQyZmNjMGJhNiIsInN1YiI6IjYxMzY2MTNjNmUwZDcyMDA2MjRjMzM4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yexq3TVyd1xgDFZzrMlFmy3dLTpiAi3UqhzoNF3siYo",
         },
       };
 
+      // You can customize the query parameters to match your requirements.
+      const queryParams = {
+        sort_by: "popularity.desc", // Sort by popularity, you can change this
+        page: 1, // The page number, you can paginate through the results
+      };
+
       const res = await axios.get(
-        "https://api.themoviedb.org/3/trending/movie/day",
-        config
+        "https://api.themoviedb.org/3/discover/movie",
+        {
+          ...config,
+          params: queryParams,
+        }
       );
-      setMovies(res.data);
+
+      // The response will contain a list of movies based on your query.
+      console.log(res.data.results);
+      setMovies(res.data.results);
     };
-    fetch();
+
+    fetchAllMovies();
   }, []);
 
   console.log(movies);
   return (
     <div className="">
       <Header />
-      <FeaturedMovies />
+      <FeaturedMovies movies={movies} />
       <Footer />
     </div>
   );

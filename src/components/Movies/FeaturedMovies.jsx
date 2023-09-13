@@ -2,7 +2,8 @@ import React from "react";
 import FeaturedMoviesCard from "./FeaturedMovieCard";
 import SpaceContainer from "../utils/SpaceContainer";
 
-const FeaturedMovies = () => {
+const FeaturedMovies = ({ movies }) => {
+
   return (
     <div className="my-20">
       <SpaceContainer>
@@ -20,8 +21,11 @@ const FeaturedMovies = () => {
         </section>
         <div className="grid grid-cols-4 grid-rows-3 gap-16">
           {/* Your grid items go here */}
-          {Array.from({ length: 12 }, (_, index) => (
+          {/* {Array.from({ length: 12 }, (_, index) => (
             <FeaturedMoviesCard key={index} />
+          ))} */}
+          {movies?.map((movie) => (
+            <FeaturedMoviesCard key={movie.id} movie={movie} />
           ))}
         </div>
       </SpaceContainer>
