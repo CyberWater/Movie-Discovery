@@ -6,16 +6,16 @@ import { Link } from "react-router-dom";
 const FeaturedMovieCard = ({ movie }) => {
   const [genres, setGenres] = useState([]);
 
-  return ( 
+  return (
     <div className=" p-4 rounded-md w-[250px] h-[490px]">
       <div className="relative">
-      <Link to={`movie/${movie.id}`}>
-      <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          className="w-[250px] h-[370px] object-cover"
-        />
-      </Link>
-       
+        <Link to={`movie/${movie.id}`}>
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            className="w-[250px] h-[370px] object-cover"
+          />
+        </Link>
+
         <span className="absolute rounded-full p-1 bg-gray-100/40 top-5 left-44">
           <img src="/images/heart.png" className="w-6 h-6 " />
         </span>
@@ -43,12 +43,6 @@ const FeaturedMovieCard = ({ movie }) => {
             <span>{movie.vote_average * 10}%</span>
           </div>
         </div>
-        {/* <p className="text-gray-400 font-semibold">
-          {movie.genre_ids
-            .map((genreId) => genres[genreId])
-            .filter(Boolean)
-            .join(", ")}
-        </p> */}
       </div>
     </div>
   );
