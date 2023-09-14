@@ -7,13 +7,14 @@ import Footer from "./Movies/Footer";
 const Home = () => {
   const [movies, setMovies] = useState([]);
 
+  console.log(import.meta.env.VITE_AUTH_TOKEN);
+
   useEffect(() => {
     const fetchAllMovies = async () => {
       const config = {
         headers: {
           accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZWFiMjNjMzRlMGVhNmI2NjUyMDE5ZmQyZmNjMGJhNiIsInN1YiI6IjYxMzY2MTNjNmUwZDcyMDA2MjRjMzM4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yexq3TVyd1xgDFZzrMlFmy3dLTpiAi3UqhzoNF3siYo",
+          Authorization: `Bearer ${import.meta.env.VITE_AUTH_TOKEN}`,
         },
       };
 

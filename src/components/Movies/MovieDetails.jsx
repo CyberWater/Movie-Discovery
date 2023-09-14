@@ -19,8 +19,8 @@ const MovieDetails = () => {
           `https://api.themoviedb.org/3/movie/${id}`,
           {
             headers: {
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZWFiMjNjMzRlMGVhNmI2NjUyMDE5ZmQyZmNjMGJhNiIsInN1YiI6IjYxMzY2MTNjNmUwZDcyMDA2MjRjMzM4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yexq3TVyd1xgDFZzrMlFmy3dLTpiAi3UqhzoNF3siYo",
+              accept: "application/json",
+              Authorization: `Bearer ${import.meta.env.VITE_AUTH_TOKEN}`,
             },
             params: {
               append_to_response: "videos",
@@ -74,31 +74,6 @@ const MovieDetails = () => {
 
     fetchMovieDetails();
   }, [id]);
-  //   const fetchAllMovies = async () => {
-  //     const config = {
-  //       headers: {
-  //         accept: "application/json",
-  //         Authorization:
-  //           "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZWFiMjNjMzRlMGVhNmI2NjUyMDE5ZmQyZmNjMGJhNiIsInN1YiI6IjYxMzY2MTNjNmUwZDcyMDA2MjRjMzM4MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yexq3TVyd1xgDFZzrMlFmy3dLTpiAi3UqhzoNF3siYo",
-  //       },
-  //     };
-
-  //     // You can customize the query parameters to match your requirements.
-  //     const queryParams = {
-  //       append_to_response: "videos",
-  //     };
-
-  //     const res = await axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
-  //       config,
-  //     });
-
-  //     // The response will contain a list of movies based on your query.
-  //     console.log(res.data.results);
-  //     setMovie(res.data.results);
-  //   };
-
-  //   fetchAllMovies();
-  // }, [id]);
 
   if (!movie) {
     return <Spinner />;
