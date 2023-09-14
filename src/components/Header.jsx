@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 import SpaceContainer from "./utils/SpaceContainer";
 
-const Header = () => {
+const Header = ({ movies }) => {
+  const [currentMovieIndex, setCurrentMovieIndex] = useState(0);
+  const movie = movies?.map((movie) => movie);
+
+  // Select the first 5 movies to display initially
+  const initialMovies = movies.slice(2, 7);
+
+  const handleNextMovie = () => {
+    // Increment the current movie index, looping back to 0 if we reach the end
+    setCurrentMovieIndex((prevIndex) =>
+      prevIndex === initialMovies.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const currentMovie = initialMovies[currentMovieIndex];
+
+  console.log({ currentMovie, initialMovies });
+
   return (
-    <header className="h-[600px] w-[100%]  bg-[url('./images/Poster.png')] object-cover bg-no-repeat">
+    <header className="w-full bg-[url('./images/Poster.png')] bg-cover bg-no-repeat h-[600px]">
       <Navbar />
 
       <SpaceContainer>
@@ -36,6 +53,8 @@ const Header = () => {
               </button>
             </div>
           </div>
+
+          <div className="text-white  item">1,2,3</div>
         </section>
       </SpaceContainer>
     </header>

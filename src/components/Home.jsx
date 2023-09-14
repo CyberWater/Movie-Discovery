@@ -30,9 +30,6 @@ const Home = () => {
           params: queryParams,
         }
       );
-
-      // The response will contain a list of movies based on your query.
-      console.log(res.data.results);
       setMovies(res.data.results);
     };
 
@@ -41,7 +38,7 @@ const Home = () => {
   return (
     <div>
       {" "}
-      <Header />
+      <Header movies={movies} />
       <FeaturedMovies movies={movies} />
       <Footer />
     </div>
