@@ -18,10 +18,10 @@ const Header = ({ movies }) => {
 
   const currentMovie = initialMovies[currentMovieIndex];
 
-  console.log({ currentMovie, initialMovies });
+  
 
   return (
-    <header className="w-full bg-[url('./images/Poster.png')] bg-cover bg-no-repeat h-[600px]">
+    <header className="w-full bg-[url('/images/Poster.png')] bg-cover bg-no-repeat h-[600px]">
       <Navbar />
 
       <SpaceContainer>

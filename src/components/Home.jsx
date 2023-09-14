@@ -7,7 +7,6 @@ import Footer from "./Movies/Footer";
 const Home = () => {
   const [movies, setMovies] = useState([]);
 
-  console.log(import.meta.env.VITE_AUTH_TOKEN);
 
   useEffect(() => {
     const fetchAllMovies = async () => {
