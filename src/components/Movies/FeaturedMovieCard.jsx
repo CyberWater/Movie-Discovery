@@ -7,7 +7,7 @@ const FeaturedMovieCard = ({ movie }) => {
   const [genres, setGenres] = useState([]);
 
   return (
-    <div className=" p-4 rounded-md w-[250px] h-[490px]">
+    <div className="p-4 rounded-md w-[250px] h-[490px]  flex-col justify-center items-center">
       <div className="relative">
         <Link to={`movie/${movie.id}`}>
           <img
@@ -26,7 +26,7 @@ const FeaturedMovieCard = ({ movie }) => {
           </p>
         </div>
       </div>
-      <div className=" py-2 space-y-2">
+      <div className="py-2 space-y-2">
         <p className="text-xs font-semibold text-gray-400">
           {movie.release_date}, {movie.status}
         </p>

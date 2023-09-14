@@ -30,7 +30,7 @@ const MovieDetails = () => {
 
         setMovie(response.data);
 
-        // Extract the video URL from the response
+        
         const videos = response.data.videos.results;
         if (videos && videos.length > 0) {
           // Use the first video as an example; you can customize this logic
@@ -38,7 +38,7 @@ const MovieDetails = () => {
           setVideoUrl(`https://www.youtube.com/embed/${videoKey}`);
         }
 
-        // Fetch movie credits
+        
         const creditsResponse = await axios.get(
           `https://api.themoviedb.org/3/movie/${id}/credits`,
           {
@@ -49,7 +49,7 @@ const MovieDetails = () => {
           }
         );
 
-        // Extract director, writers, and stars
+        
         const directorData = creditsResponse.data.crew.find(
           (person) => person.job === "Director"
         );
@@ -214,7 +214,9 @@ const MovieDetails = () => {
           </div>
         </section>
       </div>
+     
     </section>
+    
 
   );
 };
